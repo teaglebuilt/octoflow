@@ -1,0 +1,14 @@
+apiVersion: v2
+description: Octoflow Chart
+name: octoflow
+version: 0.1.0
+dependencies:
+  - name: airflow
+    repository: https://airflow-helm.github.io/charts
+    version: 8.x.x
+  - name: keda
+    repository: https://kedacore.github.io/charts
+    version: 2.x.x
+  - name: influxdb
+    repository: https://helm.influxdata.com/
+    version: 4.x.x

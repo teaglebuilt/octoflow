@@ -1,0 +1,12 @@
+dependencies:
+- name: airflow
+  repository: https://airflow-helm.github.io/charts
+  version: 8.5.2
+- name: keda
+  repository: https://kedacore.github.io/charts
+  version: 2.4.0
+- name: influxdb
+  repository: https://helm.influxdata.com/
+  version: 4.10.0
+digest: sha256:6506eed55689e6379ece46f891918c04c5274624e5fc4cf3e9cb1faddca72e1b
+generated: "2021-10-14T08:44:38.518457-05:00"
