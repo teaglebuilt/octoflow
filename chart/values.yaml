@@ -1,3 +1,48 @@
 
 
 image: teaglebuilt/octoflow:latest
+
+tags:
+  airflow: true
+  keda: false
+  influxdb: false
+
+
+airflow:
+  executor: "LocalExecutor"
+
+  webserver:
+    resources:
+      limits:
+        cpu: 100m
+        memory: 244Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+
+  scheduler:
+    resources:
+      limits:
+        cpu: 100m
+        memory: 340Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+
+  redis:
+    enabled: false
+
+  pgbouncer:
+    enabled: false
+
+  flower:
+    enabled: false
+
+  workers:
+    resources:
+      limits:
+        cpu: 100m
+        memory: 340Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi

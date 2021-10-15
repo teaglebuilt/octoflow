@@ -5,10 +5,16 @@ version: 0.1.0
 dependencies:
   - name: airflow
     repository: https://airflow-helm.github.io/charts
-    version: 8.x.x
+    version: 1.2.0
+    tags:
+      - airflow
   - name: keda
     repository: https://kedacore.github.io/charts
     version: 2.x.x
+    tags:
+      - keda
   - name: influxdb
     repository: https://helm.influxdata.com/
     version: 4.x.x
+    tags:
+      - influxdb
