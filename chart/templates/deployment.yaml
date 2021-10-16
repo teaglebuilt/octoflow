@@ -1,43 +1,43 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: scheduler
-  labels:
-    app: {{ .Release.Name }}
-    component: api
-    release: {{ .Release.Name }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    heritage: {{ .Release.Service }}
-spec:
-  selector:
-    matchLabels:
-      app: {{ .Release.Name }}
-      component: api
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: {{ .Release.Name }}
-        component: api
-    spec:
-      terminationGracePeriodSeconds: 10
-      containers:
-        - name: scheduler
-          image: {{ .Values.image }}
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8739
-          resources:
-            limits:
-              cpu: 250m
-              memory: 1000Mi
-            requests:
-              memory: 500Mi
-          securityContext:
-            runAsUser: 1000
-          volumeMounts:
-            - name: logs
-              mountPath: /usr/local/airflow/logs
-      volumes:
-        - name: logs
-          emptyDir: {}
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: scheduler
+#   labels:
+#     app: {{ .Release.Name }}
+#     component: api
+#     release: {{ .Release.Name }}
+#     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+#     heritage: {{ .Release.Service }}
+# spec:
+#   selector:
+#     matchLabels:
+#       app: {{ .Release.Name }}
+#       component: api
+#   replicas: 1
+#   template:
+#     metadata:
+#       labels:
+#         app: {{ .Release.Name }}
+#         component: api
+#     spec:
+#       terminationGracePeriodSeconds: 10
+#       containers:
+#         - name: scheduler
+#           image: {{ .Values.image }}
+#           imagePullPolicy: Always
+#           ports:
+#             - containerPort: 8739
+#           resources:
+#             limits:
+#               cpu: 250m
+#               memory: 1000Mi
+#             requests:
+#               memory: 500Mi
+#           securityContext:
+#             runAsUser: 1000
+#           volumeMounts:
+#             - name: logs
+#               mountPath: /usr/local/airflow/logs
+#       volumes:
+#         - name: logs
+#           emptyDir: {}

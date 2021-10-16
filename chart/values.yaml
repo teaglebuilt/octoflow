@@ -5,7 +5,8 @@ image: teaglebuilt/octoflow:latest
 tags:
   airflow: true
   keda: false
-  influxdb: false
+  prometheus: false
+  prometheus-adapter: false
 
 
 airflow:
