@@ -5,8 +5,11 @@ dependencies:
 - name: keda
   repository: https://kedacore.github.io/charts
   version: 2.4.0
-- name: influxdb
-  repository: https://helm.influxdata.com/
-  version: 4.10.0
-digest: sha256:6506eed55689e6379ece46f891918c04c5274624e5fc4cf3e9cb1faddca72e1b
-generated: "2021-10-14T08:44:38.518457-05:00"
+- name: prometheus
+  repository: https://prometheus-community.github.io/helm-charts
+  version: 14.11.0
+- name: prometheus-adapter
+  repository: https://prometheus-community.github.io/helm-charts
+  version: 2.17.0
+digest: sha256:66fa9221e1f4af228a9f9a4ddb4eae3984bb5177031eebef6f7fd07af4589923
+generated: "2021-10-16T10:01:32.990184-05:00"

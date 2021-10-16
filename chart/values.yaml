@@ -3,10 +3,10 @@
 image: teaglebuilt/octoflow:latest
 
 tags:
-  airflow: true
+  airflow: false
   keda: false
-  prometheus: false
-  prometheus-adapter: false
+  prometheus: true
+  prometheus-adapter: true
 
 
 airflow:
