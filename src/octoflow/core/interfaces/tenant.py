@@ -26,5 +26,6 @@ def import_routes(tenant) -> APIRouter:
 
 def load_tenants(app: FastAPI, tenants: List[str]) -> None:
     for tenant in tenants:
+        breakpoint()
         routes = import_routes(tenant)
         app.include_router(routes.routes, prefix=f"/{tenant.name}")

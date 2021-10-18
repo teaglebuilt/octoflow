@@ -15,5 +15,6 @@ def test_tenants(tmpdir_factory):
 
 def test_load_tenants():
     for ep in entry_points()['octoflow.tenants']:
+        breakpoint()
         tenant = ep.load()
         init_tenant = getattr(tenant, "init_tenant", None)
