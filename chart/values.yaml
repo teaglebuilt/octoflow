@@ -3,16 +3,17 @@
 image: teaglebuilt/octoflow:latest
 
 tags:
-  airflow: false
+  airflow: true
   keda: false
-  prometheus: true
-  prometheus-adapter: true
+  prometheus: false
+  prometheus-adapter: false
 
 
 airflow:
   executor: "LocalExecutor"
 
   webserver:
+
     resources:
       limits:
         cpu: 100m
@@ -34,7 +35,7 @@ airflow:
     enabled: false
 
   pgbouncer:
-    enabled: false
+    enabled: true
 
   flower:
     enabled: false
@@ -47,3 +48,13 @@ airflow:
       requests:
         cpu: 100m
         memory: 128Mi
+
+
+
+prometheus:
+  alertmanager:
+    enabled: false
+
+  server:
+    service:
+      type: NodePort

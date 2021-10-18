@@ -1,6 +1,7 @@
 import tempfile
+from airflow.configuration import get
 from fastapi import testclient
-from fastapi.testclient import TestClient
+from importlib.metadata import entry_points
 import pytest
 
 from octoflow.server.main import app
@@ -12,7 +13,7 @@ def test_tenants(tmpdir_factory):
     return fn
 
 
-@pytest.fixture
-def test_app(test_tenants):
-    with TestClient(app) as test_app:
-        yield test_app
+def test_load_tenants():
+    for ep in entry_points()['octoflow.tenants']:
+        tenant = ep.load()
+        init_tenant = getattr(tenant, "init_tenant", None)
