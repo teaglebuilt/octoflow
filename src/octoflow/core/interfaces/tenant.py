@@ -18,8 +18,8 @@ class TenantInterface:
         cls.tenants[tenant] = fn
         cls.application.include_router(
             cls.tenants[tenant].routes, prefix=f"/{tenant}")
-        dags = cls.tenants[tenant].dags
-        for dag_id, dag in dags.items():
+        dagbag = cls.tenants[tenant].dags
+        for dag_id, dag in dagbag.items():
             globals()[dag_id] = dag
 
 
