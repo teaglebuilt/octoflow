@@ -1,0 +1,17 @@
+services:
+  octoflow:
+    build: .
+    ports:
+      - 8080:8080
+      - 8000:8000
+    command: ["server"]
+    volumes:
+      - ./src/:/opt/octoflow/src
+
+  scheduler:
+    build: .
+    ports:
+      - 8793:8793
+    command: ["scheduler"]
+    volumes:
+      - ./src/:/opt/octoflow/src
