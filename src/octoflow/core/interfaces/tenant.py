@@ -19,7 +19,7 @@ class TenantInterface:
         cls.application.include_router(
             cls.tenants[tenant].routes, prefix=f"/{tenant}")
         dagbag = cls.tenants[tenant].dags
-        for dag_id, dag in dagbag.items():
+        for dag_id, dag in dagbag.dags.items():
             globals()[dag_id] = dag
 
 
