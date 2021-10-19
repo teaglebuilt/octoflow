@@ -1,31 +1,32 @@
-import os
-import sys
-import inspect
-import importlib
-from typing import Callable, List
-from fastapi import FastAPI, APIRouter
-
+from importlib.metadata import EntryPoint
+from typing import Callable, Tuple
+from fastapi import FastAPI
 from octoflow.models.tenant import Tenant
-
-tenants: dict[str, Callable[..., Tenant]] = {}
-
-def register(tenant: str, fn: Callable[..., Tenant]) -> None:
-    tenants[tenant] = fn
 
 
 class TenantInterface:
+    tenants: dict[str, Callable[..., Tenant]] = {}
+    application: FastAPI = None
 
-    @staticmethod
-    def initialize() -> None:
-        pass
+    @classmethod
+    def init(cls, app: FastAPI):
+        cls.application = app
+        return app
+
+    @classmethod
+    def register(cls, tenant: str, fn: Callable[..., Tenant]):
+        cls.tenants[tenant] = fn
+        cls.application.include_router(
+            cls.tenants[tenant].routes, prefix=f"/{tenant}")
+        dags = cls.tenants[tenant].dags
+        for dag_id, dag in dags.items():
+            globals()[dag_id] = dag
 
 
-def import_routes(tenant) -> APIRouter:
-    return importlib.import_module(f"{tenant.group}.{tenant.name}.routes")
 
-
-def load_tenants(app: FastAPI, tenants: List[str]) -> None:
+def load_tenants(app: FastAPI, tenants: Tuple[EntryPoint] ) -> None:
+    TenantInterface.init(app)
     for tenant in tenants:
-        breakpoint()
-        routes = import_routes(tenant)
-        app.include_router(routes.routes, prefix=f"/{tenant.name}")
+        settings = tenant.load()
+        registered_tenant = TenantInterface.register(
+            tenant.name, settings())

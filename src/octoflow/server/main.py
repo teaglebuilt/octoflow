@@ -8,7 +8,7 @@ from airflow.www.app import create_app
 from octoflow.core.interfaces.tenant import load_tenants
 
 app = FastAPI()
-# app.mount("/airflow", WSGIMiddleware(create_app()))
+app.mount("/airflow", WSGIMiddleware(create_app()))
 
 
 @app.on_event("startup")

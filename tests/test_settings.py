@@ -1,12 +1,5 @@
-import attr
-from importlib.metadata import entry_points
-from octoflow.core.settings import Settings
 from fastapi import APIRouter
-
-
-@attr.s(auto_attribs=True)
-class TenantSettings(Settings):
-    routes = APIRouter()
+from tests.tenant.src.octoflow.tenants.tenant.settings import TenantSettings
 
 
 def test_register_tenant_routes():
