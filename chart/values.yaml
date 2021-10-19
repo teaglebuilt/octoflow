@@ -11,8 +11,18 @@ tags:
 
 airflow:
   executor: "LocalExecutor"
+  ingress:
+    enabled: false
+    web:
+      annotations: {}
+      path: "/"
 
   webserver:
+    service:
+      type: NodePort
+      ports:
+        port: 8080
+        nodePort: 30001
 
     resources:
       limits:
@@ -35,7 +45,7 @@ airflow:
     enabled: false
 
   pgbouncer:
-    enabled: true
+    enabled: false
 
   flower:
     enabled: false
