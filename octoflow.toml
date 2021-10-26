@@ -1,0 +1,17 @@
+["core"]
+tenants_home = "octoflow.tenants"
+loader = "entrypoint"
+# three types of tenant loading methods
+# 1 Namespace loading
+# tenants_home = "/Users/teaglebuilt/workspace/tenants"
+# loader = "namespace"
+# 2 Entrypoint Loading
+# tenants_home = "octoflow.tenants"
+# loader = "entrypoint"
+# 3 Zip Loader
+# tenants_home = "/Users/teaglebuilt/workspace/tenants"
+# loader = "zip"
+
+
+["octoflow.extensions"]
+airflow = "enabled"
