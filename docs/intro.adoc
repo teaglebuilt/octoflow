@@ -1,0 +1,9 @@
+= Introduction
+-----------
+
+The purpose of creating Octoflow is not to create a framework for orchestration of data or ETL processes. Nor is it an attempt to create any sort of open source deliverable at all.
+
+What is being delivered, is a documented objective of solving common needs or use cases for a data engineering team.
+
+It is important to understand that we are building a framework designed for a data engineering team to handle multi tenancy at ease. So each section will be addressing the *How*, *Why*, and *What*. So it will be easy to distinguish the *Why* associated to the section at read. Yet, the *How* will be documented to understand how to provide a solution.
+
