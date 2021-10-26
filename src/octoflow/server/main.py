@@ -4,16 +4,19 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.wsgi import WSGIMiddleware
 from starlette.responses import JSONResponse
 from airflow.www.app import create_app
-
+from airflow.configuration import conf
 from octoflow.core.interfaces.tenant import load_tenants
 
 app = FastAPI()
-app.mount("/airflow", WSGIMiddleware(create_app()))
+app.mount("/airflow", WSGIMiddleware(create_app(config=conf)))
 
 
 @app.on_event("startup")
 def setup_application():
-    load_tenants(app, entry_points()["octoflow.tenants"])
+    tenants = entry_points()["octoflow.tenants"]
+    if len(tenants) > 0:
+        tenants = load_tenants(tenants, app)
+        app.state.tenants = tenants
 
 
 app.add_middleware(
